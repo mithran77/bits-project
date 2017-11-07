@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<html>
+    <title>Arranged Love</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <body>
+
+        <!-- Sidebar -->
+        <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:10%">
+            <h2 style="color: blue; font-family: 'Lobster'"><u>Services</u></h2>
+            <a href="{% url 'hall_list' %}" class="w3-bar-item w3-button">Halls</a>
+            <a href="{% url 'caterer_list' %}" class="w3-bar-item w3-button">Caterers</a>
+            <a href="{% url 'florist_list' %}" class="w3-bar-item w3-button">Florists</a>
+        </div>
+
+        <!-- Page Content -->
+        <div style="margin-left:10%">
+            
+            <div class="w3-container w3-red">
+                <span style="float:left;width: 80%;">
+                    <h1 style="font-family: 'Lobster'">Wedding Planner</h1>
+                </span>
+                {% if user.is_authenticated %}
+                <span style="float:right;width: 10%;">
+                    <a href="{% url 'logout' %}">logout, {{ user.get_username }}</a>
+                </span>
+                {% else %}
+                <span style="float:right;width: 10%;">
+                    <a href="{% url 'login' %}">login</a> / <a href="{% url 'signup' %}">signup</a>
+                </span>
+                {% endif %}
+            </div>
+            <img src="{% static 'images/mehndi.jpg' %}" alt="Mehndi" style="width:100%;">
+    </body>
+</html>

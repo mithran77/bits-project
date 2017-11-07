@@ -1,0 +1,16 @@
+{
+    "server_address" : "http://127.0.0.1:8000",
+    "create_user": {
+        "fields": {
+            "username": "shaq",
+            "first_name" : "shaqueil",
+            "last_name" : "oneal",
+            "password": "test",
+            "email" : "mithran77@gmail.com",
+        }
+    },
+    "created_user" : {
+        "username": "kobe",
+        "password": "test",
+    }
+}

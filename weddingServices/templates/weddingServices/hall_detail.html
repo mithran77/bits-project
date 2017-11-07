@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Arranged Love</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+    </head>
+    <body>
+        <div class="page-header">
+            <h1><a style="font-family: 'Lobster';color: #CB4154" href="/weddingServices">Wedding Planner</a></h1>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="hall">
+                        <h3 style="color: blue">{{ hall.shop_name }}</h3>
+                        <div class="phone_number"><b>Phone Number :</b> {{ hall.phone_number }}</div>
+                        <p><b>Address :</b> {{ hall.address }}</p>
+                    </div>
+                    <a href="bookdate">View Slots</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
