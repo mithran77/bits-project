@@ -108,10 +108,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 
 STATICFILES_DIRS = (
-"/media/mithran/New_Volume/code/django/weddingPlanner/weddingPlanner/static",
+os.path.join(BASE_DIR, 'static_files'),
 )
 
 LOGIN_REDIRECT_URL = '/weddingServices/'
@@ -125,7 +125,7 @@ EMAIL_PORT = 587
 
 
 # TODO - THESE MUST BE SET
-RESOURCES_DIR = '/media/shared/src/django-paypal-store-example/samplesite/resources/'
+#RESOURCES_DIR = '/media/shared/src/django-paypal-store-example/samplesite/resources/'
 PAYPAL_PDT_TOKEN = '*** PAYPAY PDT TOKEN ***'
 PAYPAL_EMAIL = 'mithran77@gmail.com'
 PAYPAL_RETURN_URL = 'http://127.0.0.1:8000'
