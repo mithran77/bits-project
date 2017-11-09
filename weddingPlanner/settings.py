@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -137,3 +138,8 @@ PAYPAL_PDT_URL = 'https://www.sandbox.paypal.com/au/cgi-bin/webscr'
 # live
 #PAYPAL_URL = 'https://www.paypal.com/au/cgi-bin/webscr'
 #PAYPAL_PDT_URL = 'https://www.paypal.com/au/cgi-bin/webscr'
+
+
+# Postgres Heroku connect
+DATABASES['default'] =  dj_database_url.config()
+
