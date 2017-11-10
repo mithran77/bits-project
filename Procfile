@@ -1,1 +1,1 @@
-web: gunicorn weddingPlanner.wsgi --log-file -
+web: gunicorn weddingPlanner.wsgi:application --log-file -

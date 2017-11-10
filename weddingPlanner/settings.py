@@ -53,6 +53,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 )
 
 ROOT_URLCONF = 'weddingPlanner.urls'
@@ -115,6 +116,10 @@ STATICFILES_DIRS = (
 os.path.join(BASE_DIR, 'static_files'),
 )
 
+TEMPLATE_DIRS = (
+os.path.join(BASE_DIR, 'static_files'),
+)
+
 LOGIN_REDIRECT_URL = '/weddingServices/'
 
 # Email Config
@@ -140,6 +145,10 @@ PAYPAL_PDT_URL = 'https://www.sandbox.paypal.com/au/cgi-bin/webscr'
 #PAYPAL_PDT_URL = 'https://www.paypal.com/au/cgi-bin/webscr'
 
 
-# Postgres Heroku connect
-DATABASES['default'] =  dj_database_url.config()
+# Postgres Heroku connect for database configuration with $DATABASE_URL.
+db_from_env =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
+# Serving static files heroku using whitenoise
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+WSGI_APPLICATION = 'weddingPlanner.wsgi.application'
