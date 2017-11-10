@@ -81,6 +81,12 @@
 <p id="n12" class="pln"><a href="#n12">12</a></p>
 <p id="n13" class="pln"><a href="#n13">13</a></p>
 <p id="n14" class="pln"><a href="#n14">14</a></p>
+<p id="n15" class="pln"><a href="#n15">15</a></p>
+<p id="n16" class="pln"><a href="#n16">16</a></p>
+<p id="n17" class="pln"><a href="#n17">17</a></p>
+<p id="n18" class="pln"><a href="#n18">18</a></p>
+<p id="n19" class="pln"><a href="#n19">19</a></p>
+<p id="n20" class="pln"><a href="#n20">20</a></p>
 
             </td>
             <td class="text">
@@ -89,15 +95,21 @@
 <p id="t3" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t4" class="stm mis"><span class="nam">urlpatterns</span> <span class="op">=</span> <span class="op">[</span><span class="strut">&nbsp;</span></p>
 <p id="t5" class="pln">    <span class="nam">url</span><span class="op">(</span><span class="str">r'^$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">landing_page</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"landing_page"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t6" class="pln">        <span class="nam">url</span><span class="op">(</span><span class="str">r'^halls/$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">hall_list</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"hall_list"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t7" class="pln">        <span class="nam">url</span><span class="op">(</span><span class="str">r'^caterers/$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">caterer_list</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"caterer_list"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t8" class="pln">        <span class="nam">url</span><span class="op">(</span><span class="str">r'^florists/$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">florist_list</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"florist_list"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t9" class="pln">        <span class="nam">url</span><span class="op">(</span><span class="str">r'^halls/(?P&lt;pk>\d+)/$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">hall_detail</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"hall_detail"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t10" class="pln">        <span class="nam">url</span><span class="op">(</span><span class="str">r'^caterers/(?P&lt;pk>\d+)/$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">caterer_detail</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"caterer_detail"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t11" class="pln">        <span class="nam">url</span><span class="op">(</span><span class="str">r'^florists/(?P&lt;pk>\d+)/$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">florist_detail</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"florist_detail"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t12" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t13" class="pln"><span class="op">]</span><span class="strut">&nbsp;</span></p>
-<p id="t14" class="pln"><span class="strut">&nbsp;</span></p>
+<p id="t6" class="pln">    <span class="com">#url(r'^paypal/', views.django_paypal, name="django_paypal"),</span><span class="strut">&nbsp;</span></p>
+<p id="t7" class="pln">    <span class="nam">url</span><span class="op">(</span><span class="str">r'^halls/$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">hall_list</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"hall_list"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t8" class="pln">    <span class="nam">url</span><span class="op">(</span><span class="str">r'^caterers/$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">caterer_list</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"caterer_list"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t9" class="pln">    <span class="nam">url</span><span class="op">(</span><span class="str">r'^florists/$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">florist_list</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"florist_list"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t10" class="pln">    <span class="nam">url</span><span class="op">(</span><span class="str">r'^halls/(?P&lt;pk>\d+)/$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">hall_detail</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"hall_detail"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t11" class="pln">    <span class="nam">url</span><span class="op">(</span><span class="str">r'^caterers/(?P&lt;pk>\d+)/$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">caterer_detail</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"caterer_detail"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t12" class="pln">    <span class="nam">url</span><span class="op">(</span><span class="str">r'^florists/(?P&lt;pk>\d+)/$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">florist_detail</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"florist_detail"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t13" class="pln">    <span class="nam">url</span><span class="op">(</span><span class="str">r'^halls/(?P&lt;pk>\d+)/bookdate$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">bookdate_hall</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"bookdate_hall"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t14" class="pln">    <span class="nam">url</span><span class="op">(</span><span class="str">r'^caterers/(?P&lt;pk>\d+)/bookdate$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">bookdate_caterer</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"bookdate_caterer"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t15" class="pln">    <span class="nam">url</span><span class="op">(</span><span class="str">r'^florists/(?P&lt;pk>\d+)/bookdate$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">bookdate_florist</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"bookdate_florist"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t16" class="pln">    <span class="nam">url</span><span class="op">(</span><span class="str">r'^halls/[0-9]+/bookdate/(?P&lt;pk>[0-9]+)/payment$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">payment_hall</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"payment_hall"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t17" class="pln">    <span class="nam">url</span><span class="op">(</span><span class="str">r'^caterers/[0-9]+/bookdate/(?P&lt;pk>[0-9]+)/payment$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">payment_caterer</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"payment_caterer"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t18" class="pln">    <span class="nam">url</span><span class="op">(</span><span class="str">r'^florists/[0-9]+/bookdate/(?P&lt;pk>[0-9]+)/payment$'</span><span class="op">,</span> <span class="nam">views</span><span class="op">.</span><span class="nam">payment_florist</span><span class="op">,</span> <span class="nam">name</span><span class="op">=</span><span class="str">"payment_florist"</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t19" class="pln"><span class="op">]</span><span class="strut">&nbsp;</span></p>
+<p id="t20" class="pln"><span class="strut">&nbsp;</span></p>
 
             </td>
         </tr>
@@ -107,8 +119,8 @@
 <div id="footer">
     <div class="content">
         <p>
-            <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.4.1</a>,
-            created at 2017-11-04 18:13
+            <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.4.2</a>,
+            created at 2017-11-10 23:18
         </p>
     </div>
 </div>

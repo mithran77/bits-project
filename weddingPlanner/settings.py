@@ -133,7 +133,7 @@ EMAIL_PORT = 587
 # TODO - THESE MUST BE SET
 #RESOURCES_DIR = '/media/shared/src/django-paypal-store-example/samplesite/resources/'
 PAYPAL_PDT_TOKEN = '*** PAYPAY PDT TOKEN ***'
-PAYPAL_EMAIL = 'mithran77@gmail.com'
+PAYPAL_EMAIL = 'mithran77-facilitator@gmail.com'
 PAYPAL_RETURN_URL = 'http://127.0.0.1:8000'
 
 # sandbox

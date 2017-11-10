@@ -14,5 +14,4 @@ urlpatterns = [
 	url(r'^logout/$', auth_views.logout, {'next_page': '/weddingServices'}, name='logout'),
 	url(r'^signup/$', ws_views.signup, name='signup'),
 	url(r'^weddingServices/', include('weddingServices.urls')),
-	url(r'^paypal/', include('paypal.standard.ipn.urls')),
 ]

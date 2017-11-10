@@ -1,7 +1,10 @@
 import os
 import ast
+import time
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.firefox.webdriver import WebDriver
+from selenium.webdriver.common import action_chains, keys
+
 
 TESTDATA_FILENAME = os.path.join(os.path.dirname(__file__), '../../fixtures/testdata.json')
 
@@ -21,22 +24,43 @@ class SeleniumTests(StaticLiveServerTestCase):
         cls.selenium.quit()
         super(SeleniumTests, cls).tearDownClass()
 
-    def test_sign_up(self):
+    def test_sign_up_existing_user(self):
         self.selenium.get('%s%s' % (self.testdata['server_address'], '/signup/'))
         username_input = self.selenium.find_element_by_name("username")
-        username_input.send_keys(self.testdata['create_user']['fields']['username'])
+        username_input.send_keys(self.testdata['existing_user']['fields']['username'])
         first_name_input = self.selenium.find_element_by_name("first_name")
-        first_name_input.send_keys(self.testdata['create_user']['fields']['first_name'])
+        first_name_input.send_keys(self.testdata['existing_user']['fields']['first_name'])
         last_name_input = self.selenium.find_element_by_name("last_name")
-        last_name_input.send_keys(self.testdata['create_user']['fields']['last_name'])
+        last_name_input.send_keys(self.testdata['existing_user']['fields']['last_name'])
         email_input = self.selenium.find_element_by_name("email")
-        email_input.send_keys(self.testdata['create_user']['fields']['email'])
+        email_input.send_keys(self.testdata['existing_user']['fields']['email'])
         password1_input = self.selenium.find_element_by_name("password1")
-        password1_input.send_keys(self.testdata['create_user']['fields']['password'])
+        password1_input.send_keys(self.testdata['existing_user']['fields']['password'])
         password2_input = self.selenium.find_element_by_name("password2")
-        password2_input.send_keys(self.testdata['create_user']['fields']['password'])
+        password2_input.send_keys(self.testdata['existing_user']['fields']['password'])
         self.selenium.find_element_by_xpath('//button').click()
+        error_message = self.selenium.find_element_by_xpath('/html/body/form/p[2]')
+        self.assertEqual(error_message.text, 'A user with that username already exists.')
+        self.assertEqual('%s%s' % (self.testdata['server_address'], '/signup/'), self.selenium.current_url)
 
+    def test_sign_up_new_user(self):
+        self.selenium.get('%s%s' % (self.testdata['server_address'], '/signup/'))
+        username_input = self.selenium.find_element_by_name("username")
+        username_input.send_keys(self.testdata['new_user']['fields']['username'])
+        first_name_input = self.selenium.find_element_by_name("first_name")
+        first_name_input.send_keys(self.testdata['new_user']['fields']['first_name'])
+        last_name_input = self.selenium.find_element_by_name("last_name")
+        last_name_input.send_keys(self.testdata['new_user']['fields']['last_name'])
+        email_input = self.selenium.find_element_by_name("email")
+        email_input.send_keys(self.testdata['new_user']['fields']['email'])
+        password1_input = self.selenium.find_element_by_name("password1")
+        password1_input.send_keys(self.testdata['new_user']['fields']['password'])
+        password2_input = self.selenium.find_element_by_name("password2")
+        password2_input.send_keys(self.testdata['new_user']['fields']['password'])
+        self.selenium.find_element_by_xpath('//button').click()
+        self.assertEqual('%s%s' % (self.testdata['server_address'], '/weddingServices/'), self.selenium.current_url)
+
+        
     def test_login(self):
         self.selenium.get('%s%s' % (self.testdata['server_address'], '/login/'))
         username_input = self.selenium.find_element_by_name("username")
@@ -44,19 +68,23 @@ class SeleniumTests(StaticLiveServerTestCase):
         password_input = self.selenium.find_element_by_name("password")
         password_input.send_keys(self.testdata['created_user']['password'])
         self.selenium.find_element_by_xpath('//button').click()
+        self.assertEqual('%s%s' % (self.testdata['server_address'], '/weddingServices/'), self.selenium.current_url)
 
     def test_logout(self):
+        # Login
         self.selenium.get('%s%s' % (self.testdata['server_address'], '/login/'))
         username_input = self.selenium.find_element_by_name("username")
         username_input.send_keys(self.testdata['created_user']['username'])
         password_input = self.selenium.find_element_by_name("password")
         password_input.send_keys(self.testdata['created_user']['password'])
-        self.selenium.find_element_by_xpath('//button').click()		
+        self.selenium.find_element_by_xpath('//button').click()
+        # Logout
         self.selenium.find_element_by_xpath('/html/body/div[2]/div/span[2]/a').click()
+        self.assertEqual('%s%s' % (self.testdata['server_address'], '/weddingServices/'), self.selenium.current_url)
 
 
-	def test_caterer_select(self):
-		# Login
+    def test_caterer_successful_book(self):
+        # Login
         self.selenium.get('%s%s' % (self.testdata['server_address'], '/login/'))
         username_input = self.selenium.find_element_by_name("username")
         username_input.send_keys(self.testdata['created_user']['username'])
@@ -64,5 +92,52 @@ class SeleniumTests(StaticLiveServerTestCase):
         password_input.send_keys(self.testdata['created_user']['password'])
         self.selenium.find_element_by_xpath('//button').click()
 
-		# Navigate to caterer detail
-		
+        # Navigate to caterer list
+        self.selenium.find_element_by_xpath('/html/body/div[1]/a[2]').click()
+        # Navigate to caterer detail
+        self.selenium.find_element_by_xpath('/html/body/div[2]/div/div/div[3]/h3/a').click()
+        # Navigate to caterer booking
+        self.selenium.find_element_by_xpath('/html/body/div[2]/div/div/a').click()
+        # Select month from drop down
+        self.selenium.find_element_by_xpath("//*[@id='id_booking_date_month']/option[text()='January']").click()
+        # Select day from drop down
+        self.selenium.find_element_by_xpath("//*[@id='id_booking_date_day']/option[text()='1']").click()
+        # Select year from drop down
+        self.selenium.find_element_by_xpath("//*[@id='id_booking_date_year']/option[text()='2018']").click()
+        # Select time slot AN
+        self.selenium.find_element_by_xpath("//*[@id='id_time_slots_1']").click()
+        # Click book button
+        self.selenium.find_element_by_xpath('/html/body/form/button').click()
+        self.assertEqual('http://127.0.0.1:8000/weddingServices/caterers/4/bookdate', self.selenium.current_url)
+        # Click buy button
+        #self.selenium.find_element_by_xpath('/html/body/form/input[13]').click()
+        #time.sleep(5)
+        #self.assertEqual('%s%s' % (self.testdata['server_address'], '/weddingServices/'), self.selenium.current_url)
+        
+    def test_caterer_unsuccessful_book(self):
+        # Login
+        self.selenium.get('%s%s' % (self.testdata['server_address'], '/login/'))
+        username_input = self.selenium.find_element_by_name("username")
+        username_input.send_keys(self.testdata['created_user']['username'])
+        password_input = self.selenium.find_element_by_name("password")
+        password_input.send_keys(self.testdata['created_user']['password'])
+        self.selenium.find_element_by_xpath('//button').click()
+
+        # Navigate to caterer list
+        self.selenium.find_element_by_xpath('/html/body/div[1]/a[2]').click()
+        # Navigate to caterer detail
+        self.selenium.find_element_by_xpath('/html/body/div[2]/div/div/div[3]/h3/a').click()
+        # Navigate to caterer booking
+        self.selenium.find_element_by_xpath('/html/body/div[2]/div/div/a').click()
+        # Select month from drop down
+        self.selenium.find_element_by_xpath("//*[@id='id_booking_date_month']/option[text()='December']").click()
+        # Select day from drop down
+        self.selenium.find_element_by_xpath("//*[@id='id_booking_date_day']/option[text()='25']").click()
+        # Select year from drop down
+        self.selenium.find_element_by_xpath("//*[@id='id_booking_date_year']/option[text()='2017']").click()
+        # Select time slot AN
+        self.selenium.find_element_by_xpath("//*[@id='id_time_slots_1']").click()
+        # Click book button
+        self.selenium.find_element_by_xpath('/html/body/form/button').click()
+        error_message = self.selenium.find_element_by_xpath('/html/body/form/p[2]')
+        self.assertEqual(error_message.text, 'Sorry Date is already booked. Please choose another.')        

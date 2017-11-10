@@ -1,6 +1,7 @@
+
 {
     "server_address" : "http://127.0.0.1:8000",
-    "create_user": {
+    "existing_user": {
         "fields": {
             "username": "shaq",
             "first_name" : "shaqueil",
@@ -9,8 +10,32 @@
             "email" : "mithran77@gmail.com",
         }
     },
+    "new_user": {
+        "fields": {
+            "username": "lebron",
+            "first_name" : "lebron",
+            "last_name" : "james",
+            "password": "test",
+            "email" : "mithran77@gmail.com",
+        }
+    },    
     "created_user" : {
         "username": "kobe",
         "password": "test",
+    },
+    "paypal_buyer" : {
+        "email_id": "mithran77-buyer@gmail.com",
+        "password": "test1234",
+    },
+    "unsuccessful_date" : {
+        "month": "December",
+        "day": "25",
+	"year": "2017",
+    },
+    "successful_date" : {
+        "month": "January",
+        "day": "1",
+	"year": "2018",
     }
+
 }

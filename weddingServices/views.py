@@ -6,6 +6,8 @@ from django.contrib.auth import login, authenticate
 from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
 from paypal.standard.forms import PayPalPaymentsForm
+from paypal.standard.models import ST_PP_COMPLETED
+from paypal.standard.ipn.signals import valid_ipn_received
 
 from .models import Hall, Caterer, Florist, CatererBooking, HallBooking, FloristBooking
 from .forms import SignUpForm, BookingHallForm, BookingCatererForm, BookingFloristForm
@@ -76,7 +78,7 @@ def bookdate_hall(request, pk):
             email = EmailMessage(
                 BOOKING_TITLE.format('Caterer'),
                 BOOKING_BODY.format(obj.booking_date, obj.time_slots),
-                to=[obj.user.email, Caterer.objects.get(pk=int(pk)).email])
+                to=[obj.user.email, Hall.objects.get(pk=int(pk)).email])
             email.send()
             #import ipdb; ipdb.set_trace()
             return redirect('bookdate/' + str(obj.pk) + '/payment')
@@ -140,7 +142,7 @@ def bookdate_florist(request, pk):
             email = EmailMessage(
                 BOOKING_TITLE.format('Caterer'),
                 BOOKING_BODY.format(obj.booking_date, obj.time_slots),
-                to=[obj.user.email, Caterer.objects.get(pk=int(pk)).email])
+                to=[obj.user.email, Florist.objects.get(pk=int(pk)).email])
             email.send()
             #import ipdb; ipdb.set_trace()
             return redirect('bookdate/' + str(obj.pk) + '/payment')
@@ -156,12 +158,13 @@ def payment_hall(request, pk):
     paypal_dict = {
         "business": User.objects.get(id=hall_payment.user_id).email,
         "amount": str(hall_payment.cost),
-        "item_name": "payment for " + Hall.objects.get(id=hall_payment.hall_id).shop_name,
+        "item_name": "Payment for :" + Hall.objects.get(id=hall_payment.hall_id).shop_name,
         "invoice": "unique-invoice-id",
-        "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+        "notify_url": request.build_absolute_uri(reverse('landing_page')),
         "return_url": request.build_absolute_uri(reverse('landing_page')),
         "cancel_return": request.build_absolute_uri(reverse('landing_page')),
         "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
+        "currency_code": "EUR",
    	}
 
     # Create the instance.
@@ -175,12 +178,13 @@ def payment_caterer(request, pk):
     paypal_dict = {
         "business": User.objects.get(id=caterer_payment.user_id).email,
         "amount": str(caterer_payment.cost),
-        "item_name": "payment for " + Caterer.objects.get(id=caterer_payment.caterer_id).shop_name,
+        "item_name": "Payment for :" + Caterer.objects.get(id=caterer_payment.caterer_id).shop_name,
         "invoice": "unique-invoice-id",
-        "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+        "notify_url": request.build_absolute_uri(reverse('landing_page')),
         "return_url": request.build_absolute_uri(reverse('landing_page')),
         "cancel_return": request.build_absolute_uri(reverse('landing_page')),
         "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
+        "currency_code": "EUR",
    	}
 
     # Create the instance.
@@ -195,15 +199,46 @@ def payment_florist(request, pk):
     paypal_dict = {
         "business": User.objects.get(id=florist_payment.user_id).email,
         "amount": str(florist_payment.cost),
-        "item_name": "payment for " + Florist.objects.get(id=florist_payment.florist_id).shop_name,
+        "item_name": "Payment for :" + Florist.objects.get(id=florist_payment.florist_id).shop_name,
         "invoice": "unique-invoice-id",
-        "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+        "notify_url": request.build_absolute_uri(reverse('landing_page')),
         "return_url": request.build_absolute_uri(reverse('landing_page')),
         "cancel_return": request.build_absolute_uri(reverse('landing_page')),
         "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
+        "currency_code": "EUR",
    	}
 
     # Create the instance.
     form = PayPalPaymentsForm(initial=paypal_dict)
     context = {"form": form}
     return render(request, "weddingServices/payment_page.html", context)
+
+#def django_paypal(sender, **kwargs):
+#    import ipdb; ipdb.set_trace()
+#    ipn_obj = sender
+#    if ipn_obj.payment_status == ST_PP_COMPLETED:
+        # WARNING !
+        # Check that the receiver email is the same we previously
+        # set on the `business` field. (The user could tamper with
+        # that fields on the payment form before it goes to PayPal)
+#        if ipn_obj.receiver_email != "receiver_email@example.com":
+            # Not a valid payment
+#            return
+
+        # ALSO: for the same reason, you need to check the amount
+        # received, `custom` etc. are all what you expect or what
+        # is allowed.
+
+        # Undertake some action depending upon `ipn_obj`.
+#        if ipn_obj.custom == "premium_plan":
+#            price = ...
+#        else:
+#            price = ...
+
+#        if ipn_obj.mc_gross == price and ipn.mc_currency == 'USD':
+#            ...
+#    else:
+#        pass
+        #...
+
+#valid_ipn_received.connect(show_me_the_money)
