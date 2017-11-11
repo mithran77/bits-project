@@ -1,7 +1,7 @@
-import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "weddingPlanner.settings")
+import os # pragma: no cover
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "weddingPlanner.settings") # pragma: no cover
 
-from django.core.wsgi import get_wsgi_application
-from whitenoise.django import DjangoWhiteNoise
-application = get_wsgi_application()
-application = DjangoWhiteNoise(application)
+from django.core.wsgi import get_wsgi_application # pragma: no cover
+from whitenoise.django import DjangoWhiteNoise # pragma: no cover
+application = get_wsgi_application() # pragma: no cover
+application = DjangoWhiteNoise(application) # pragma: no cover

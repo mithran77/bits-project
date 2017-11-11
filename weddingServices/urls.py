@@ -1,7 +1,7 @@
-from django.conf.urls import url
-from . import views
+from django.conf.urls import url # pragma: no cover
+from . import views # pragma: no cover
 
-urlpatterns = [
+urlpatterns = [ # pragma: no cover
     url(r'^$', views.landing_page, name="landing_page"),
     #url(r'^paypal/', views.django_paypal, name="django_paypal"),
     url(r'^halls/$', views.hall_list, name="hall_list"),

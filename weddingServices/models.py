@@ -18,7 +18,7 @@ class Hall(models.Model):
 		max_digits=6, decimal_places=2, default=Decimal('0.0000'))
     added_date = models.DateTimeField(default=timezone.now)
 
-    def __str__(self):
+    def __str__(self): # pragma: no cover
         return self.shop_name
 
 class Caterer(models.Model):
@@ -31,7 +31,7 @@ class Caterer(models.Model):
 		max_digits=6, decimal_places=2, default=Decimal('0.0000'))
     added_date = models.DateTimeField(default=timezone.now)
 
-    def __str__(self):
+    def __str__(self): # pragma: no cover
         return self.shop_name
 
 class Florist(models.Model):
@@ -44,7 +44,7 @@ class Florist(models.Model):
 		max_digits=6, decimal_places=2, default=Decimal('0.0000'))
     added_date = models.DateTimeField(default=timezone.now)
 
-    def __str__(self):
+    def __str__(self): # pragma: no cover
         return self.shop_name
 
 class HallBooking(models.Model):

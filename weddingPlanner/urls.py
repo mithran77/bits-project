@@ -1,10 +1,10 @@
-from django.conf.urls import include, url
-from django.contrib import admin
-from weddingServices import views as ws_views
-from django.contrib.auth import views as auth_views
+from django.conf.urls import include, url # pragma: no cover
+from django.contrib import admin # pragma: no cover
+from weddingServices import views as ws_views # pragma: no cover
+from django.contrib.auth import views as auth_views # pragma: no cover
 
 
-urlpatterns = [
+urlpatterns = [ # pragma: no cover
     # Examples:
     # url(r'^$', 'weddingPlanner.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
