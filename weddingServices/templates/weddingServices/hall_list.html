@@ -19,6 +19,7 @@
                         <h3><a href="{% url 'hall_detail' pk=hall.pk %}">{{ hall.shop_name }}</a></h3>
                         <p><b>Phone Number:</b> {{ hall.phone_number }}</p>
                         <p><b>Address :</b> {{ hall.address }}</p>
+			<p><b>Session Cost : </b>{{ hall.session_cost }}</p>
                     </div>
                     {% endfor %}
                 </div>

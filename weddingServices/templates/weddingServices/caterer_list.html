@@ -19,6 +19,7 @@
                         <h3><a href="{% url 'caterer_detail' pk=caterer.pk %}">{{ caterer.shop_name }}</a></h3>
                         <p><b>Phone Number:</b> {{ caterer.phone_number }}</p>
                         <p><b>Address : </b>{{ caterer.address }}</p>
+			<p><b>Session Cost : </b>{{ caterer.session_cost }}</p>
                     </div>
                     {% endfor %}
                 </div>

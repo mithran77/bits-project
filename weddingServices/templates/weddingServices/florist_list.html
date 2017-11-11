@@ -19,6 +19,7 @@
                         <h3><a href="{% url 'florist_detail' pk=florist.pk %}">{{ florist.shop_name }}</a></h3>
                         <p><b>Phone Number: </b>{{ florist.phone_number }}</p>
                         <p><b>Address : </b>{{ florist.address }}</p>
+			<p><b>Session Cost : </b>{{ florist.session_cost }}</p>
                     </div>
                     {% endfor %}
                 </div>
