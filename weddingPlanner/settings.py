@@ -40,6 +40,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 	'weddingServices',
 	'paypal.standard.ipn',
+	'twitter_stream',
+	'social_widgets',
+	'smart_selects',
 )
 
 PAYPAL_TEST = True

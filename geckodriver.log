@@ -1248,3 +1248,17 @@ JavaScript error: resource://app/modules/FormValidationHandler.jsm, line 99: Typ
 1510336113931	Marionette	INFO	New connections will no longer be accepted
 [GFX1-]: Receive IPC close with reason=AbnormalShutdown
 [Child 23541] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-l1g98U/firefox-56.0+build6/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1511949908393	geckodriver	INFO	geckodriver 0.19.1
+1511949908431	geckodriver	INFO	Listening on 127.0.0.1:49306
+1511949909613	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/tmp.pVsE4ANrRE/rust_mozprofile.LoC7NDwJ19lj"
+
+(firefox:8143): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8143): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+
+(firefox:8143): GLib-GObject-CRITICAL **: g_object_ref: assertion 'object->ref_count > 0' failed
+
+(firefox:8143): GLib-GObject-CRITICAL **: g_object_unref: assertion 'object->ref_count > 0' failed
+1511949913595	Marionette	INFO	Listening on port 45351
+1511949913730	Marionette	WARN	TLS certificate errors will be ignored for this session
+1511950005609	Marionette	INFO	New connections will no longer be accepted

@@ -96,7 +96,7 @@ class SeleniumTests(StaticLiveServerTestCase):
         self.selenium.find_element_by_xpath("//*[@id='id_time_slots_1']").click()
         # Click book button
         self.selenium.find_element_by_xpath('/html/body/form/button').click()
-        self.assertIn('http://127.0.0.1:8000/weddingServices/caterers/4/bookdate', self.selenium.current_url)
+        self.assertIn('http://127.0.0.1:8000/weddingServices/caterers/2/bookdate', self.selenium.current_url)
         # Click buy button
         #self.selenium.find_element_by_xpath('/html/body/form/input[13]').click()
         #time.sleep(5)
@@ -122,7 +122,7 @@ class SeleniumTests(StaticLiveServerTestCase):
         self.selenium.find_element_by_xpath("//*[@id='id_time_slots_1']").click()
         # Click book button
         self.selenium.find_element_by_xpath('/html/body/form/button').click()
-        self.assertIn('http://127.0.0.1:8000/weddingServices/halls/3/bookdate', self.selenium.current_url)
+        self.assertIn('http://127.0.0.1:8000/weddingServices/halls/1/bookdate', self.selenium.current_url)
         # Click buy button
         #self.selenium.find_element_by_xpath('/html/body/form/input[13]').click()
         #time.sleep(5)
@@ -149,7 +149,7 @@ class SeleniumTests(StaticLiveServerTestCase):
         self.selenium.find_element_by_xpath("//*[@id='id_time_slots_1']").click()
         # Click book button
         self.selenium.find_element_by_xpath('/html/body/form/button').click()
-        self.assertIn('http://127.0.0.1:8000/weddingServices/florists/1/bookdate', self.selenium.current_url)
+        self.assertIn('http://127.0.0.1:8000/weddingServices/florists/2/bookdate', self.selenium.current_url)
         # Click buy button
         #self.selenium.find_element_by_xpath('/html/body/form/input[13]').click()
         #time.sleep(5)

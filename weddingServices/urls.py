@@ -4,9 +4,9 @@ from . import views # pragma: no cover
 urlpatterns = [ # pragma: no cover
     url(r'^$', views.landing_page, name="landing_page"),
     #url(r'^paypal/', views.django_paypal, name="django_paypal"),
-    url(r'^halls/$', views.hall_list, name="hall_list"),
-    url(r'^caterers/$', views.caterer_list, name="caterer_list"),
-    url(r'^florists/$', views.florist_list, name="florist_list"),
+    url(r'^halls/$', views.HallListView.as_view(), name="hall_list"),
+    url(r'^caterers/$', views.CatererListView.as_view(), name="caterer_list"),
+    url(r'^florists/$', views.FloristListView.as_view(), name="florist_list"),
     url(r'^halls/(?P<pk>\d+)/$', views.hall_detail, name="hall_detail"),
     url(r'^caterers/(?P<pk>\d+)/$', views.caterer_detail, name="caterer_detail"),
     url(r'^florists/(?P<pk>\d+)/$', views.florist_detail, name="florist_detail"),
