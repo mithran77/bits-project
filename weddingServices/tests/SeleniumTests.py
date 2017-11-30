@@ -5,7 +5,7 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.common import action_chains, keys
 from selenium.common.exceptions import StaleElementReferenceException
-
+from commonfns import TestHelper
 
 TESTDATA_FILENAME = os.path.join(os.path.dirname(__file__), '../../fixtures/testdata.json')
 
@@ -19,6 +19,7 @@ class SeleniumTests(StaticLiveServerTestCase):
         cls.testdata = ast.literal_eval(cls.testdata)
         cls.selenium = WebDriver()
         cls.selenium.implicitly_wait(10)
+        self.helper = TestHelper()
 
     @classmethod
     def tearDownClass(cls):
@@ -61,14 +62,14 @@ class SeleniumTests(StaticLiveServerTestCase):
         self.selenium.find_element_by_xpath('//button').click()
         self.assertEqual('%s%s' % (self.testdata['server_address'], '/weddingServices/'), self.selenium.current_url)
 
-        
+
     def test_login(self):
-        self.login()
+        self.helper.login()
         self.assertEqual('%s%s' % (self.testdata['server_address'], '/weddingServices/'), self.selenium.current_url)
 
     def test_logout(self):
         # Login
-        self.login()
+        self.helper.login()
         self.assertEqual('%s%s' % (self.testdata['server_address'], '/weddingServices/'), self.selenium.current_url)
 
         # Logout
@@ -78,7 +79,7 @@ class SeleniumTests(StaticLiveServerTestCase):
 
     def test_caterer_successful_book(self):
         # Login
-        self.login()
+        self.helper.login()
 
         # Navigate to caterer list
         self.selenium.find_element_by_xpath('/html/body/div[1]/a[2]').click()
@@ -104,7 +105,7 @@ class SeleniumTests(StaticLiveServerTestCase):
 
     def test_hall_successful_book(self):
         # Login
-        self.login()
+        self.helper.login()
 
         # Navigate to caterer list
         self.selenium.find_element_by_xpath('/html/body/div[1]/a[1]').click()
@@ -131,7 +132,7 @@ class SeleniumTests(StaticLiveServerTestCase):
 
     def test_florist_successful_book(self):
         # Login
-        self.login()
+        self.helper.login()
 
         # Navigate to caterer list
         self.selenium.find_element_by_xpath('/html/body/div[1]/a[3]').click()
@@ -159,7 +160,7 @@ class SeleniumTests(StaticLiveServerTestCase):
         
     def test_caterer_unsuccessful_book(self):
         # Login
-        self.login()
+        self.helper.login()
 
         # Navigate to caterer list
         self.selenium.find_element_by_xpath('/html/body/div[1]/a[2]').click()
@@ -182,7 +183,7 @@ class SeleniumTests(StaticLiveServerTestCase):
 
     def test_florist_unsuccessful_book(self):
         # Login
-        self.login()
+        self.helper.login()
 
         # Navigate to caterer list
         self.selenium.find_element_by_xpath('/html/body/div[1]/a[3]').click()
@@ -205,7 +206,7 @@ class SeleniumTests(StaticLiveServerTestCase):
 
     def test_hall_unsuccessful_book(self):
         # Login
-        self.login()
+        self.helper.login()
 
         # Navigate to caterer list
         self.selenium.find_element_by_xpath('/html/body/div[1]/a[1]').click()
@@ -225,17 +226,5 @@ class SeleniumTests(StaticLiveServerTestCase):
         self.selenium.find_element_by_xpath('/html/body/form/button').click()
         error_message = self.selenium.find_element_by_xpath('/html/body/form/p[2]')
         self.assertEqual(error_message.text, 'Sorry Date is already booked. Please choose another.')
-
-        
-    def login(self):
-        try:
-            self.selenium.get('%s%s' % (self.testdata['server_address'], '/login/'))
-            username_input = self.selenium.find_element_by_name("username")
-            username_input.send_keys(self.testdata['created_user']['username'])
-            password_input = self.selenium.find_element_by_name("password")
-            password_input.send_keys(self.testdata['created_user']['password'])
-            self.selenium.find_element_by_xpath('//button').click()
-        except StaleElementReferenceException:
-            pass
 
         
