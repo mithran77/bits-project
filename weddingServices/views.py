@@ -20,28 +20,9 @@ BOOKING_BODY = 'This is to confirm booking, {} in the {}'
 def landing_page(request):
     return render(request, 'weddingServices/landing_page.html', {'post': ''})
 
-#def hall_list(request):
-#    halls = Hall.objects.order_by('added_date')
-#    return render(request, 'weddingServices/hall_list.html', {'halls': halls})
-
-#def caterer_list(ListView):
-#	model = Caterer
-
-#	def get_queryset(self):
-#		order = self.request.GET.get('orderby', 'session_cost')
-#		new_context = Update.objects.order_by(order)
-#		return new_context
-
-#	def get_context_data(self, **kwargs):
-#		context = super(MyView, self).get_context_data(**kwargs)
-#		context['orderby'] = self.request.GET.get('orderby', 'session_cost')
-#		return context
-    #caterers = Caterer.objects.order_by('added_date')
-    #return render(request, 'weddingServices/caterer_list.html', {'caterers': caterers})
-
 class CatererListView(ListView):
 	model = Caterer
-	template_name = "weddingServices/caterer_list.html"
+	template_name = "weddingServices/generic_list.html"
 
 	def get_queryset(self):
 		order = self.request.GET.get('orderby', 'session_cost')
@@ -51,11 +32,14 @@ class CatererListView(ListView):
 	def get_context_data(self, **kwargs):
 		context = super(CatererListView, self).get_context_data(**kwargs)
 		context['orderby'] = self.request.GET.get('orderby', 'session_cost')
+		context['current_url'] = 'caterer_list'
+		context['forward_url'] = 'caterer_detail'
+		context['drop_down_selection'] = 'Caterer List'
 		return context
 
 class HallListView(ListView):
 	model = Hall
-	template_name = "weddingServices/hall_list.html"
+	template_name = "weddingServices/generic_list.html"
 
 	def get_queryset(self):
 		order = self.request.GET.get('orderby', 'session_cost')
@@ -65,11 +49,14 @@ class HallListView(ListView):
 	def get_context_data(self, **kwargs):
 		context = super(HallListView, self).get_context_data(**kwargs)
 		context['orderby'] = self.request.GET.get('orderby', 'session_cost')
+		context['current_url'] = 'hall_list'
+		context['forward_url'] = 'hall_detail'
+		context['drop_down_selection'] = 'Hall List'
 		return context
 
 class FloristListView(ListView):
 	model = Florist
-	template_name = "weddingServices/florist_list.html"
+	template_name = "weddingServices/generic_list.html"
 
 	def get_queryset(self):
 		order = self.request.GET.get('orderby', 'session_cost')
@@ -79,11 +66,11 @@ class FloristListView(ListView):
 	def get_context_data(self, **kwargs):
 		context = super(FloristListView, self).get_context_data(**kwargs)
 		context['orderby'] = self.request.GET.get('orderby', 'session_cost')
+		context['current_url'] = 'florist_list'
+		context['forward_url'] = 'florist_detail'
+		context['drop_down_selection'] = 'Florist List'
 		return context
-	
-#def florist_list(request):
-#    florists = Florist.objects.order_by('added_date')
-#    return render(request, 'weddingServices/florist_list.html', {'florists': florists})
+
 
 def hall_detail(request, pk):
     hall = get_object_or_404(Hall, pk=pk)

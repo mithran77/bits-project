@@ -1,0 +1,54 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <link rel="shortcut icon" type="image/png" href="{% static 'images/wedding_icon.png' %}" />
+        <title>Arranged Love</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />  
+            <link rel="stylesheet" href="{% static 'bootstrap-3.3.7/css/bootstrap.min.css' %}">
+        {% endblock %}
+        {% block javascript %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="{% static 'bootstrap-3.3.7/js/bootstrap.min.js' %}"></script>
+        {% endblock %}
+    </head>
+
+    <body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/weddingServices" style="color: darksalmon;">Arranged Love</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">
+                        {% block drop_down_selection %}
+                        {% endblock %}
+                </a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Services<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/weddingServices/halls">Hall List</a></li>
+                        <li><a href="/weddingServices/caterers">Caterer List</a></li>
+                        <li><a href="/weddingServices/florists">Florist List</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <img class="brand" src="{% static 'images/logo.png' %}"/>
+			<ul class="nav navbar-nav navbar-right">
+				{% if user.is_authenticated %}
+                	<li><a href="{% url 'logout' %}">
+                		<span class="glyphicon glyphicon-user" style="color:firebrick"></span> Logout, {{ user.get_username }}
+                	</a></li>
+                {% else %}
+                	<li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user" style="color:royalblue"></span> Sign Up</a></li>
+                	<li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in" style="color:limegreen"></span> Login</a></li>
+                {% endif %}
+            </ul>
+        </div><!--/.container-fluid -->
+    </nav><!--/.navbar-inverse -->
+
+    {% block body %}
+    {% endblock %}
+    </body>
+
+</html>

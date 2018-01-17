@@ -1,0 +1,36 @@
+{% extends 'weddingServices/base.html' %}
+
+{% load staticfiles %}
+
+{% block drop_down_selection %}
+    {{ drop_down_selection }}
+{% endblock %}
+
+{% block body %}
+    <form method="get" action="{% url current_url %}">
+        <span style="float:right;width: 30%;">
+            <p><b>Order By:</b>
+                <select type="select" name="orderby" onChange="form.submit();" onfocus="this.selectedIndex = -1;">
+                    <option disabled selected value> -- select an option -- </option>
+                    <option value="session_cost">Cost</option>
+                    <option value="added_date">Added Date</option>
+                </select>
+            </p>
+        </span>
+    </form>
+
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+                {% for object in object_list %}
+                    <div class="object">
+                        <h3><a href="{% url forward_url pk=object.pk %}"><b>{{ object.shop_name }}</b></a></h3>
+                        <p><b>Phone Number: </b>{{ object.phone_number }}</p>
+                        <p><b>Address : </b>{{ object.address }}</p>
+		        		<p><b>Session Cost : </b>{{ object.session_cost }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

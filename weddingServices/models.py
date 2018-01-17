@@ -12,11 +12,15 @@ class Hall(models.Model):
     user = models.ForeignKey('auth.User')
     shop_name = models.CharField(max_length=200)
     address = models.TextField()
-    phone_number = models.CharField(max_length=10)
+    phone_number = models.CharField(max_length=15)
     email = models.EmailField(max_length=70,blank=True)
     session_cost = models.DecimalField(
 		max_digits=6, decimal_places=2, default=Decimal('0.0000'))
     added_date = models.DateTimeField(default=timezone.now)
+    lat = models.DecimalField(
+		max_digits=10, decimal_places=8, default=Decimal('0.0000'))
+    lng = models.DecimalField(
+		max_digits=10, decimal_places=8, default=Decimal('0.0000'))
 
     def __str__(self): # pragma: no cover
         return self.shop_name
@@ -25,11 +29,15 @@ class Caterer(models.Model):
     user = models.ForeignKey('auth.User')
     shop_name = models.CharField(max_length=200)
     address = models.TextField()
-    phone_number = models.CharField(max_length=10)
+    phone_number = models.CharField(max_length=15)
     email = models.EmailField(max_length=70,blank=True)
     session_cost = models.DecimalField(
 		max_digits=6, decimal_places=2, default=Decimal('0.0000'))
     added_date = models.DateTimeField(default=timezone.now)
+    lat = models.DecimalField(
+		max_digits=10, decimal_places=8, default=Decimal('0.0000'))
+    lng = models.DecimalField(
+		max_digits=10, decimal_places=8, default=Decimal('0.0000'))
 
     def __str__(self): # pragma: no cover
         return self.shop_name
@@ -38,11 +46,15 @@ class Florist(models.Model):
     user = models.ForeignKey('auth.User')
     shop_name = models.CharField(max_length=200)
     address = models.TextField()
-    phone_number = models.CharField(max_length=10)
+    phone_number = models.CharField(max_length=15)
     email = models.EmailField(max_length=70,blank=True)
     session_cost = models.DecimalField(
 		max_digits=6, decimal_places=2, default=Decimal('0.0000'))
     added_date = models.DateTimeField(default=timezone.now)
+    lat = models.DecimalField(
+		max_digits=10, decimal_places=8, default=Decimal('0.0000'))
+    lng = models.DecimalField(
+		max_digits=10, decimal_places=8, default=Decimal('0.0000'))
 
     def __str__(self): # pragma: no cover
         return self.shop_name
