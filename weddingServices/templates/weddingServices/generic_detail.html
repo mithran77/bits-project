@@ -3,7 +3,7 @@
 {% load staticfiles %}
 
 {% block drop_down_selection %}
-    Hall
+    {{ drop_down_selection }}
 {% endblock %}
 
     
@@ -12,15 +12,15 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="hall">
-                    <h3 style="color: indianred"><u><b>{{ hall.shop_name }}</b></u></h3>
-                    <div class="phone_number"><b>Phone Number :</b> {{ hall.phone_number }}</div>
-                    <p><b>Address :</b> {{ hall.address }}</p>
-		    <p><b>Session Cost : </b>{{ hall.session_cost }}</p>
+                    <h3 style="color: indianred"><u><b>{{ object.shop_name }}</b></u></h3>
+                    <div class="phone_number"><b>Phone Number :</b> {{ object.phone_number }}</div>
+                    <p><b>Address :</b> {{ object.address }}</p>
+		    		<p><b>Session Cost : </b>{{ object.session_cost }}</p>
                 </div>
                 <p><div id="map"></div></p>
                 <script>
                     function initMap() {
-                    var uluru = {lat: {{ hall.lat }}, lng: {{ hall.lng }} };
+                    var uluru = {lat: {{ object.lat }}, lng: {{ object.lng }} };
                     var map = new google.maps.Map(document.getElementById('map'), {
                     zoom: 13,
                     center: uluru

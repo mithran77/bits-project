@@ -74,15 +74,18 @@ class FloristListView(ListView):
 
 def hall_detail(request, pk):
     hall = get_object_or_404(Hall, pk=pk)
-    return render(request, 'weddingServices/hall_detail.html', {'hall': hall})
+    context = {'object': hall, 'drop_down_selection': 'Hall'}
+    return render(request, 'weddingServices/generic_detail.html', context)
 
 def caterer_detail(request, pk):
     caterer = get_object_or_404(Caterer, pk=pk)
-    return render(request, 'weddingServices/caterer_detail.html', {'caterer': caterer})
+    context = {'object': caterer, 'drop_down_selection': 'Caterer'}
+    return render(request, 'weddingServices/generic_detail.html', context)
 
 def florist_detail(request, pk):
     florist = get_object_or_404(Florist, pk=pk)
-    return render(request, 'weddingServices/florist_detail.html', {'florist': florist})
+    context = {'object': florist, 'drop_down_selection': 'Florist'}
+    return render(request, 'weddingServices/generic_detail.html', context)
 
 def signup(request):
     if request.method == 'POST':
